@@ -46,7 +46,13 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer findById(int id) {
-        return customerMap.get(id);
+        Customer customer = null;
+        try {
+            customer = customerDAO.getCustomer(id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return customer;
     }
 
     @Override
