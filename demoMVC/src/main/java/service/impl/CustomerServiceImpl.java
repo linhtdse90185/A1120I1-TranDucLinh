@@ -5,6 +5,7 @@ import dao.impl.CustomerDAOImpl;
 import model.Customer;
 import service.CustomerService;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,7 +37,11 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void save(Customer customer) {
-        customerMap.put(customer.getId(),customer);
+        try {
+            customerDAO.insertCustomer(customer);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override
