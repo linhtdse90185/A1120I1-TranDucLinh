@@ -39,14 +39,20 @@ public class CustomerServiceImpl implements CustomerService {
     public void save(Customer customer) {
         try {
             customerDAO.insertCustomer(customer);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
     @Override
     public Customer findById(int id) {
-        return customerMap.get(id);
+        Customer customer = null;
+        try {
+            customer = customerDAO.getCustomer(id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return customer;
     }
 
     @Override
