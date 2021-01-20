@@ -39,8 +39,8 @@ public class CustomerServiceImpl implements CustomerService {
     public void save(Customer customer) {
         try {
             customerDAO.insertCustomer(customer);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
